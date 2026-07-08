@@ -1,0 +1,2255 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Петелька — сайт про в’язання</title>
+
+  <style>
+    :root {
+      --bg: #f7efe7;
+      --bg-soft: #fffaf4;
+      --cream: #fff7ed;
+      --text: #3f342c;
+      --muted: #7c695d;
+      --accent: #b9785f;
+      --accent-dark: #87513f;
+      --sage: #a8b8a0;
+      --rose: #e7c7bd;
+      --brown: #5b3f35;
+      --card: rgba(255, 250, 244, 0.82);
+      --shadow: 0 18px 45px rgba(91, 63, 53, 0.13);
+      --radius: 28px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(231, 199, 189, 0.55), transparent 28%),
+        radial-gradient(circle at 85% 20%, rgba(168, 184, 160, 0.45), transparent 26%),
+        linear-gradient(135deg, #f7efe7 0%, #fffaf4 52%, #efe2d7 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      overflow: hidden;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(255, 250, 244, 0.78);
+      border-bottom: 1px solid rgba(91, 63, 53, 0.08);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--brown);
+      letter-spacing: 0.02em;
+    }
+
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 35%, #fff8ef 0 20%, transparent 21%),
+        linear-gradient(135deg, var(--rose), var(--accent));
+      box-shadow: 0 8px 20px rgba(185, 120, 95, 0.25);
+      position: relative;
+    }
+
+    .logo-mark::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(91, 63, 53, 0.45);
+      border-radius: 50%;
+      right: -3px;
+      bottom: 2px;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      list-style: none;
+      font-family: Arial, sans-serif;
+      font-size: 0.94rem;
+      color: var(--muted);
+    }
+
+    .menu a {
+      transition: 0.25s ease;
+    }
+
+    .menu a:hover {
+      color: var(--accent-dark);
+    }
+
+    .nav-button {
+      font-family: Arial, sans-serif;
+      background: var(--brown);
+      color: #fffaf4;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      transition: 0.25s ease;
+    }
+
+    .nav-button:hover {
+      transform: translateY(-2px);
+      background: var(--accent-dark);
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 88px 0 72px;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.04fr 0.96fr;
+      align-items: center;
+      gap: 44px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.76rem;
+      color: var(--accent-dark);
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 6.8rem);
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+      color: var(--brown);
+      margin-bottom: 26px;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .hero-text {
+      max-width: 570px;
+      color: var(--muted);
+      font-size: 1.13rem;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 34px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 13px 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(91, 63, 53, 0.16);
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fffaf4;
+      border-color: var(--accent);
+      box-shadow: 0 14px 30px rgba(185, 120, 95, 0.26);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 250, 244, 0.72);
+      color: var(--brown);
+    }
+
+    .btn-secondary:hover {
+      background: #fffaf4;
+      transform: translateY(-2px);
+    }
+
+    .hero-note {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-family: Arial, sans-serif;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .hero-note span {
+      background: rgba(255, 250, 244, 0.75);
+      border: 1px solid rgba(91, 63, 53, 0.08);
+      padding: 8px 12px;
+      border-radius: 999px;
+    }
+
+    .yarn-card {
+      min-height: 540px;
+      border-radius: 42px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.5), rgba(255,250,244,0.1)),
+        radial-gradient(circle at 40% 35%, #e7c7bd 0 14%, transparent 15%),
+        radial-gradient(circle at 62% 46%, #b9785f 0 12%, transparent 13%),
+        radial-gradient(circle at 45% 64%, #a8b8a0 0 16%, transparent 17%),
+        #efe2d7;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.55);
+    }
+
+    .yarn-card::before,
+    .yarn-card::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      border: 2px solid rgba(91, 63, 53, 0.16);
+    }
+
+    .yarn-card::before {
+      width: 330px;
+      height: 330px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(-15deg);
+      box-shadow:
+        inset 0 0 0 18px rgba(255, 250, 244, 0.2),
+        inset 0 0 0 36px rgba(91, 63, 53, 0.04);
+    }
+
+    .yarn-card::after {
+      width: 460px;
+      height: 460px;
+      right: -130px;
+      bottom: -120px;
+      opacity: 0.5;
+    }
+
+    .needle {
+      position: absolute;
+      width: 420px;
+      height: 10px;
+      background: linear-gradient(90deg, #6b5147, #d8b49f, #6b5147);
+      border-radius: 999px;
+      transform: rotate(-34deg);
+      left: 38px;
+      top: 250px;
+      z-index: 2;
+      box-shadow: 0 12px 24px rgba(91, 63, 53, 0.18);
+    }
+
+    .needle.second {
+      transform: rotate(28deg);
+      top: 255px;
+      left: 78px;
+    }
+
+    .floating-label {
+      position: absolute;
+      z-index: 4;
+      background: rgba(255, 250, 244, 0.82);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(91, 63, 53, 0.1);
+      padding: 14px 16px;
+      border-radius: 18px;
+      box-shadow: 0 14px 30px rgba(91, 63, 53, 0.12);
+      font-family: Arial, sans-serif;
+      color: var(--brown);
+      font-size: 0.92rem;
+    }
+
+    .floating-label.one {
+      left: 28px;
+      bottom: 32px;
+    }
+
+    .floating-label.two {
+      right: 28px;
+      top: 34px;
+    }
+
+    .floating-label strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 3px;
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 78px 0;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .section-head.center {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section-title {
+      font-size: clamp(2.1rem, 4vw, 4rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--brown);
+      margin-bottom: 18px;
+    }
+
+    .section-text {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .techniques {
+      background: rgba(255, 250, 244, 0.45);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .tech-card {
+      background: var(--card);
+      border: 1px solid rgba(91, 63, 53, 0.08);
+      border-radius: 24px;
+      padding: 24px 20px;
+      box-shadow: 0 14px 34px rgba(91, 63, 53, 0.08);
+      transition: 0.25s ease;
+      min-height: 230px;
+    }
+
+    .tech-card:hover {
+      transform: translateY(-7px);
+      box-shadow: var(--shadow);
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 17px;
+      display: grid;
+      place-items: center;
+      background: rgba(185, 120, 95, 0.14);
+      color: var(--accent-dark);
+      font-size: 1.45rem;
+      margin-bottom: 18px;
+    }
+
+    .tech-card h3 {
+      color: var(--brown);
+      font-size: 1.18rem;
+      margin-bottom: 10px;
+    }
+
+    .tech-card p {
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: 0.94rem;
+    }
+
+    .ideas {
+      background: var(--brown);
+      color: #fffaf4;
+      position: relative;
+    }
+
+    .ideas .section-title,
+    .ideas .section-text,
+    .ideas .eyebrow {
+      color: #fffaf4;
+    }
+
+    .ideas .eyebrow::before {
+      background: rgba(255, 250, 244, 0.65);
+    }
+
+    .idea-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .idea-large,
+    .idea-list {
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 250, 244, 0.16);
+      background: rgba(255, 250, 244, 0.08);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.13);
+    }
+
+    .idea-large {
+      padding: 34px;
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        radial-gradient(circle at 80% 10%, rgba(231,199,189,0.18), transparent 32%),
+        rgba(255, 250, 244, 0.08);
+    }
+
+    .idea-large h3 {
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      margin-bottom: 18px;
+    }
+
+    .idea-large p {
+      color: rgba(255, 250, 244, 0.78);
+      max-width: 520px;
+      font-family: Arial, sans-serif;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .tags span {
+      font-family: Arial, sans-serif;
+      font-size: 0.86rem;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 250, 244, 0.13);
+      border: 1px solid rgba(255, 250, 244, 0.14);
+    }
+
+    .idea-list {
+      padding: 24px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .idea-item {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255, 250, 244, 0.1);
+    }
+
+    .idea-item strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 1.05rem;
+    }
+
+    .idea-item span {
+      font-family: Arial, sans-serif;
+      color: rgba(255, 250, 244, 0.72);
+      font-size: 0.92rem;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .tip {
+      background: rgba(255, 250, 244, 0.8);
+      border-radius: 24px;
+      padding: 24px;
+      border: 1px solid rgba(91, 63, 53, 0.08);
+      box-shadow: 0 12px 32px rgba(91, 63, 53, 0.07);
+    }
+
+    .tip-number {
+      color: var(--accent);
+      font-size: 2.6rem;
+      line-height: 1;
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+
+    .tip h3 {
+      color: var(--brown);
+      margin-bottom: 8px;
+      font-size: 1.22rem;
+    }
+
+    .tip p {
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* CALCULATOR */
+
+    .tools {
+      background:
+        linear-gradient(135deg, rgba(168, 184, 160, 0.22), rgba(231, 199, 189, 0.22)),
+        rgba(255, 250, 244, 0.55);
+    }
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .tool-card {
+      background: rgba(255, 250, 244, 0.86);
+      border: 1px solid rgba(91, 63, 53, 0.08);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .tool-card h3 {
+      color: var(--brown);
+      font-size: 1.65rem;
+      margin-bottom: 12px;
+    }
+
+    .tool-card p {
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      margin-bottom: 22px;
+    }
+
+    .form {
+      display: grid;
+      gap: 14px;
+      font-family: Arial, sans-serif;
+    }
+
+    label {
+      color: var(--brown);
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    select,
+    input {
+      width: 100%;
+      border: 1px solid rgba(91, 63, 53, 0.16);
+      background: #fffaf4;
+      color: var(--text);
+      border-radius: 16px;
+      min-height: 48px;
+      padding: 0 14px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    select:focus,
+    input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(185, 120, 95, 0.12);
+    }
+
+    .result-box {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(168, 184, 160, 0.18);
+      color: var(--brown);
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+    }
+
+    .quiz-result {
+      min-height: 184px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(185,120,95,0.16), transparent 32%),
+        rgba(255, 250, 244, 0.86);
+    }
+
+    .quiz-result strong {
+      display: block;
+      color: var(--accent-dark);
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+
+    .quiz-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .small-btn {
+      border: 1px solid rgba(91, 63, 53, 0.13);
+      background: #fffaf4;
+      color: var(--brown);
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      transition: 0.25s ease;
+    }
+
+    .small-btn:hover {
+      background: var(--accent);
+      color: #fffaf4;
+      border-color: var(--accent);
+    }
+
+    /* FACTS */
+
+    .facts-wrap {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .fact-card {
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(255, 250, 244, 0.78);
+      border: 1px solid rgba(91, 63, 53, 0.08);
+    }
+
+    .fact-card h3 {
+      color: var(--accent-dark);
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+
+    .fact-card p {
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    /* CTA */
+
+    .cta {
+      padding: 90px 0;
+    }
+
+    .cta-box {
+      border-radius: 38px;
+      background:
+        radial-gradient(circle at 12% 20%, rgba(255, 250, 244, 0.25), transparent 28%),
+        linear-gradient(135deg, var(--accent), var(--brown));
+      color: #fffaf4;
+      text-align: center;
+      padding: clamp(42px, 8vw, 76px) 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .cta-box h2 {
+      font-size: clamp(2.2rem, 5vw, 4.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin-bottom: 18px;
+    }
+
+    .cta-box p {
+      max-width: 640px;
+      margin: 0 auto 26px;
+      color: rgba(255, 250, 244, 0.82);
+      font-family: Arial, sans-serif;
+    }
+
+    .cta-box .btn {
+      background: #fffaf4;
+      color: var(--brown);
+      border-color: #fffaf4;
+    }
+
+    .footer {
+      padding: 28px 0;
+      border-top: 1px solid rgba(91, 63, 53, 0.08);
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .idea-grid,
+      .tool-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .tips-grid,
+      .facts-wrap {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .yarn-card {
+        min-height: 420px;
+      }
+
+      .menu {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 22px, 1120px);
+      }
+
+      .hero {
+        padding: 54px 0 48px;
+      }
+
+      section {
+        padding: 54px 0;
+      }
+
+      .cards-grid,
+      .tips-grid,
+      .facts-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions,
+      .quiz-buttons {
+        flex-direction: column;
+      }
+
+      .btn,
+      .small-btn,
+      .nav-button {
+        width: 100%;
+      }
+
+      .nav {
+        min-height: 68px;
+      }
+
+      .yarn-card {
+        min-height: 340px;
+        border-radius: 30px;
+      }
+
+      .needle {
+        width: 320px;
+        left: 0;
+        top: 170px;
+      }
+
+      .needle.second {
+        left: 30px;
+        top: 180px;
+      }
+
+      .floating-label {
+        font-size: 0.82rem;
+        padding: 11px 12px;
+      }
+
+      .floating-label.one {
+        left: 14px;
+        bottom: 18px;
+      }
+
+      .floating-label.two {
+        right: 14px;
+        top: 18px;
+      }
+
+      .tool-card,
+      .idea-large {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <header class="header">
+      <div class="container nav">
+        <a href="#" class="logo">
+          <span class="logo-mark"></span>
+          <span>Петелька</span>
+        </a>
+
+        <ul class="menu">
+          <li><a href="#techniques">Техніки</a></li>
+          <li><a href="#ideas">Ідеї</a></li>
+          <li><a href="#tips">Поради</a></li>
+          <li><a href="#tools">Калькулятор</a></li>
+          <li><a href="#facts">Факти</a></li>
+        </ul>
+
+        <a href="#tools" class="nav-button">Підібрати старт</a>
+      </div>
+    </header>
+
+    <main>
+
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <p class="eyebrow">світ пряжі, петель і теплих речей</p>
+            <h1>В’язання, яке хочеться <span>почати</span></h1>
+            <p class="hero-text">
+              Спицями, гачком, руками, пальцями чи на машині — тут зібрані ідеї,
+              поради, техніки й маленькі інструменти, які допоможуть розібратися
+              у в’язанні без страху перед першою петлею.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#techniques" class="btn btn-primary">Дивитися техніки</a>
+              <a href="#tips" class="btn btn-secondary">Поради для новачків</a>
+            </div>
+
+            <div class="hero-note">
+              <span>5 способів в’язання</span>
+              <span>ідеї виробів</span>
+              <span>калькулятор пряжі</span>
+            </div>
+          </div>
+
+          <div class="yarn-card" aria-label="Декоративна ілюстрація клубків пряжі">
+            <div class="needle"></div>
+            <div class="needle second"></div>
+            <div class="floating-label one">
+              <strong>1 петля</strong>
+            Нижче — концепція і готовий код сайту одним файлом. Тема: в’язання як тепле, сучасне, творче хобі. Сайт можна назвати “Петелька”.
+
+Концепція сайту
+
+Ідея:
+сайт-натхненник для людей, які хочуть в’язати спицями, гачком, руками, пальцями або на машині. Він не просто “про в’язання”, а як маленький онлайн-простір: що обрати, з чого почати, які матеріали потрібні, які техніки існують, скільки пряжі приблизно треба.
+
+Структура сайту:
+
+головний екран з атмосферним вступом;
+
+блок “Способи в’язання”;
+
+блок “Що можна створити”;
+
+поради для початківців;
+
+мінікалькулятор пряжі;
+
+інтерактивний блок “Що мені спробувати?”;
+
+блок з цікавими фактами;
+
+фінальний заклик почати з маленького виробу.
+
+
+
+---
+
+Готовий код index.html
+
+Скопіюй усе в один файл index.html.
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Петелька — сайт про в’язання</title>
+
+  <style>
+    :root {
+      --bg: #f7efe7;
+      --bg-soft: #fffaf4;
+      --cream: #fff7ed;
+      --text: #3f342c;
+      --muted: #7c695d;
+      --accent: #b9785f;
+      --accent-dark: #87513f;
+      --sage: #a8b8a0;
+      --rose: #e7c7bd;
+      --brown: #5b3f35;
+      --card: rgba(255, 250, 244, 0.82);
+      --shadow: 0 18px 45px rgba(91, 63, 53, 0.13);
+      --radius: 28px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(231, 199, 189, 0.55), transparent 28%),
+        radial-gradient(circle at 85% 20%, rgba(168, 184, 160, 0.45), transparent 26%),
+        linear-gradient(135deg, #f7efe7 0%, #fffaf4 52%, #efe2d7 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      overflow: hidden;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(255, 250, 244, 0.78);
+      border-bottom: 1px solid rgba(91, 63, 53, 0.08);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--brown);
+      letter-spacing: 0.02em;
+    }
+
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 35%, #fff8ef 0 20%, transparent 21%),
+        linear-gradient(135deg, var(--rose), var(--accent));
+      box-shadow: 0 8px 20px rgba(185, 120, 95, 0.25);
+      position: relative;
+    }
+
+    .logo-mark::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(91, 63, 53, 0.45);
+      border-radius: 50%;
+      right: -3px;
+      bottom: 2px;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      list-style: none;
+      font-family: Arial, sans-serif;
+      font-size: 0.94rem;
+      color: var(--muted);
+    }
+
+    .menu a {
+      transition: 0.25s ease;
+    }
+
+    .menu a:hover {
+      color: var(--accent-dark);
+    }
+
+    .nav-button {
+      font-family: Arial, sans-serif;
+      background: var(--brown);
+      color: #fffaf4;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      transition: 0.25s ease;
+    }
+
+    .nav-button:hover {
+      transform: translateY(-2px);
+      background: var(--accent-dark);
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 88px 0 72px;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.04fr 0.96fr;
+      align-items: center;
+      gap: 44px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.76rem;
+      color: var(--accent-dark);
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 6.8rem);
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+      color: var(--brown);
+      margin-bottom: 26px;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .hero-text {
+      max-width: 570px;
+      color: var(--muted);
+      font-size: 1.13rem;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 34px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 13px 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(91, 63, 53, 0.16);
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fffaf4;
+      border-color: var(--accent);
+      box-shadow: 0 14px 30px rgba(185, 120, 95, 0.26);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 250, 244, 0.72);
+      color: var(--brown);
+    }
+
+    .btn-secondary:hover {
+      background: #fffaf4;
+      transform: translateY(-2px);
+    }
+
+    .hero-note {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-family: Arial, sans-serif;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .hero-note span {
+      background: rgba(255, 250, 244, 0.75);
+      border: 1px solid rgba(91, 63, 53, 0.08);
+      padding: 8px 12px;
+      border-radius: 999px;
+    }
+
+    .yarn-card {
+      min-height: 540px;
+      border-radius: 42px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.5), rgba(255,250,244,0.1)),
+        radial-gradient(circle at 40% 35%, #e7c7bd 0 14%, transparent 15%),
+        radial-gradient(circle at 62% 46%, #b9785f 0 12%, transparent 13%),
+        radial-gradient(circle at 45% 64%, #a8b8a0 0 16%, transparent 17%),
+        #efe2d7;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.55);
+    }
+
+    .yarn-card::before,
+    .yarn-card::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      border: 2px solid rgba(91, 63, 53, 0.16);
+    }
+
+    .yarn-card::before {
+      width: 330px;
+      height: 330px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(-15deg);
+      box-shadow:
+        inset 0 0 0 18px rgba(255, 250, 244, 0.2),
+        inset 0 0 0 36px rgba(91, 63, 53, 0.04);
+    }
+
+    .yarn-card::after {
+      width: 460px;
+      height: 460px;
+      right: -130px;
+      bottom: -120px;
+      opacity: 0.5;
+    }
+
+    .needle {
+      position: absolute;
+      width: 420px;
+      height: 10px;
+      background: linear-gradient(90deg, #6b5147, #d8b49f, #6b5147);
+      border-radius: 999px;
+      transform: rotate(-34deg);
+      left: 38px;
+      top: 250px;
+      z-index: 2;
+      box-shadow: 0 12px 24px rgba(91, 63, 53, 0.18);
+    }
+
+    .needle.second {
+      transform: rotate(28deg);
+      top: 255px;
+      left: 78px;
+    }
+
+    .floating-label {
+      position: absolute;
+      z-index: 4;
+      background: rgba(255, 250, 244, 0.82);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(91, 63, 53, 0.1);
+      padding: 14px 16px;
+      border-radius: 18px;
+      box-shadow: 0 14px 30px rgba(91, 63, 53, 0.12);
+      font-family: Arial, sans-serif;
+      color: var(--brown);
+      font-size: 0.92rem;
+    }
+
+    .floating-label.one {
+      left: 28px;
+      bottom: 32px;
+    }
+
+    .floating-label.two {
+      right: 28px;
+      top: 34px;
+    }
+
+    .floating-label strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 3px;
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 78px 0;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .section-head.center {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section-title {
+      font-size: clamp(2.1rem, 4vw, 4rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--brown);
+      margin-bottom: 18px;
+    }
+
+    .section-text {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .techniques {
+      background: rgba(255, 250, 244, 0.45);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .tech-card {
+      background: var(--card);
+      border: 1px solid rgba(91, 63, 53, 0.08);
+      border-radius: 24px;
+      padding: 24px 20px;
+      box-shadow: 0 14px 34px rgba(91, 63, 53, 0.08);
+      transition: 0.25s ease;
+      min-height: 230px;
+    }
+
+    .tech-card:hover {
+      transform: translateY(-7px);
+      box-shadow: var(--shadow);
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 17px;
+      display: grid;
+      place-items: center;
+      background: rgba(185, 120, 95, 0.14);
+      color: var(--accent-dark);
+      font-size: 1.45rem;
+      margin-bottom: 18px;
+    }
+
+    .tech-card h3 {
+      color: var(--brown);
+      font-size: 1.18rem;
+      margin-bottom: 10px;
+    }
+
+    .tech-card p {
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: 0.94rem;
+    }
+
+    .ideas {
+      background: var(--brown);
+      color: #fffaf4;
+      position: relative;
+    }
+
+    .ideas .section-title,
+    .ideas .section-text,
+    .ideas .eyebrow {
+      color: #fffaf4;
+    }
+
+    .ideas .eyebrow::before {
+      background: rgba(255, 250, 244, 0.65);
+    }
+
+    .idea-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .idea-large,
+    .idea-list {
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 250, 244, 0.16);
+      background: rgba(255, 250, 244, 0.08);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.13);
+    }
+
+    .idea-large {
+      padding: 34px;
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        radial-gradient(circle at 80% 10%, rgba(231,199,189,0.18), transparent 32%),
+        rgba(255, 250, 244, 0.08);
+    }
+
+    .idea-large h3 {
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      margin-bottom: 18px;
+    }
+
+    .idea-large p {
+      color: rgba(255, 250, 244, 0.78);
+      max-width: 520px;
+      font-family: Arial, sans-serif;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .tags span {
+      font-family: Arial, sans-serif;
+      font-size: 0.86rem;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 250, 244, 0.13);
+      border: 1px solid rgba(255, 250, 244, 0.14);
+    }
+
+    .idea-list {
+      padding: 24px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .idea-item {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255, 250, 244, 0.1);
+    }
+
+    .idea-item strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 1.05rem;
+    }
+
+    .idea-item span {
+      font-family: Arial, sans-serif;
+      color: rgba(255, 250, 244, 0.72);
+      font-size: 0.92rem;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .tip {
+      background: rgba(255, 250, 244, 0.8);
+      border-radius: 24px;
+      padding: 24px;
+      border: 1px solid rgba(91, 63, 53, 0.08);
+      box-shadow: 0 12px 32px rgba(91, 63, 53, 0.07);
+    }
+
+    .tip-number {
+      color: var(--accent);
+      font-size: 2.6rem;
+      line-height: 1;
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+
+    .tip h3 {
+      color: var(--brown);
+      margin-bottom: 8px;
+      font-size: 1.22rem;
+    }
+
+    .tip p {
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* CALCULATOR */
+
+    .tools {
+      background:
+        linear-gradient(135deg, rgba(168, 184, 160, 0.22), rgba(231, 199, 189, 0.22)),
+        rgba(255, 250, 244, 0.55);
+    }
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .tool-card {
+      background: rgba(255, 250, 244, 0.86);
+      border: 1px solid rgba(91, 63, 53, 0.08);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .tool-card h3 {
+      color: var(--brown);
+      font-size: 1.65rem;
+      margin-bottom: 12px;
+    }
+
+    .tool-card p {
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      margin-bottom: 22px;
+    }
+
+    .form {
+      display: grid;
+      gap: 14px;
+      font-family: Arial, sans-serif;
+    }
+
+    label {
+      color: var(--brown);
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    select,
+    input {
+      width: 100%;
+      border: 1px solid rgba(91, 63, 53, 0.16);
+      background: #fffaf4;
+      color: var(--text);
+      border-radius: 16px;
+      min-height: 48px;
+      padding: 0 14px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    select:focus,
+    input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(185, 120, 95, 0.12);
+    }
+
+    .result-box {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(168, 184, 160, 0.18);
+      color: var(--brown);
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+    }
+
+    .quiz-result {
+      min-height: 184px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(185,120,95,0.16), transparent 32%),
+        rgba(255, 250, 244, 0.86);
+    }
+
+    .quiz-result strong {
+      display: block;
+      color: var(--accent-dark);
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+
+    .quiz-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .small-btn {
+      border: 1px solid rgba(91, 63, 53, 0.13);
+      background: #fffaf4;
+      color: var(--brown);
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      transition: 0.25s ease;
+    }
+
+    .small-btn:hover {
+      background: var(--accent);
+      color: #fffaf4;
+      border-color: var(--accent);
+    }
+
+    /* FACTS */
+
+    .facts-wrap {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .fact-card {
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(255, 250, 244, 0.78);
+      border: 1px solid rgba(91, 63, 53, 0.08);
+    }
+
+    .fact-card h3 {
+      color: var(--accent-dark);
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+
+    .fact-card p {
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    /* CTA */
+
+    .cta {
+      padding: 90px 0;
+    }
+
+    .cta-box {
+      border-radius: 38px;
+      background:
+        radial-gradient(circle at 12% 20%, rgba(255, 250, 244, 0.25), transparent 28%),
+        linear-gradient(135deg, var(--accent), var(--brown));
+      color: #fffaf4;
+      text-align: center;
+      padding: clamp(42px, 8vw, 76px) 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .cta-box h2 {
+      font-size: clamp(2.2rem, 5vw, 4.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin-bottom: 18px;
+    }
+
+    .cta-box p {
+      max-width: 640px;
+      margin: 0 auto 26px;
+      color: rgba(255, 250, 244, 0.82);
+      font-family: Arial, sans-serif;
+    }
+
+    .cta-box .btn {
+      background: #fffaf4;
+      color: var(--brown);
+      border-color: #fffaf4;
+    }
+
+    .footer {
+      padding: 28px 0;
+      border-top: 1px solid rgba(91, 63, 53, 0.08);
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .idea-grid,
+      .tool-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .tips-grid,
+      .facts-wrap {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .yarn-card {
+        min-height: 420px;
+      }
+
+      .menu {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 22px, 1120px);
+      }
+
+      .hero {
+        padding: 54px 0 48px;
+      }
+
+      section {
+        padding: 54px 0;
+      }
+
+      .cards-grid,
+      .tips-grid,
+      .facts-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions,
+      .quiz-buttons {
+        flex-direction: column;
+      }
+
+      .btn,
+      .small-btn,
+      .nav-button {
+        width: 100%;
+      }
+
+      .nav {
+        min-height: 68px;
+      }
+
+      .yarn-card {
+        min-height: 340px;
+        border-radius: 30px;
+      }
+
+      .needle {
+        width: 320px;
+        left: 0;
+        top: 170px;
+      }
+
+      .needle.second {
+        left: 30px;
+        top: 180px;
+      }
+
+      .floating-label {
+        font-size: 0.82rem;
+        padding: 11px 12px;
+      }
+
+      .floating-label.one {
+        left: 14px;
+        bottom: 18px;
+      }
+
+      .floating-label.two {
+        right: 14px;
+        top: 18px;
+      }
+
+      .tool-card,
+      .idea-large {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <header class="header">
+      <div class="container nav">
+        <a href="#" class="logo">
+          <span class="logo-mark"></span>
+          <span>Петелька</span>
+        </a>
+
+        <ul class="menu">
+          <li><a href="#techniques">Техніки</a></li>
+          <li><a href="#ideas">Ідеї</a></li>
+          <li><a href="#tips">Поради</a></li>
+          <li><a href="#tools">Калькулятор</a></li>
+          <li><a href="#facts">Факти</a></li>
+        </ul>
+
+        <a href="#tools" class="nav-button">Підібрати старт</a>
+      </div>
+    </header>
+
+    <main>
+
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <p class="eyebrow">світ пряжі, петель і теплих речей</p>
+            <h1>В’язання, яке хочеться <span>почати</span></h1>
+            <p class="hero-text">
+              Спицями, гачком, руками, пальцями чи на машині — тут зібрані ідеї,
+              поради, техніки й маленькі інструменти, які допоможуть розібратися
+              у в’язанні без страху перед першою петлею.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#techniques" class="btn btn-primary">Дивитися техніки</a>
+              <a href="#tips" class="btn btn-secondary">Поради для новачків</a>
+            </div>
+
+            <div class="hero-note">
+              <span>5 способів в’язання</span>
+              <span>ідеї виробів</span>
+              <span>калькулятор пряжі</span>
+            </div>
+          </div>
+
+          <div class="yarn-card" aria-label="Декоративна ілюстрація клубків пряжі">
+            <div class="needle"></div>
+            <div class="needle second"></div>
+            <div class="floating-label one">
+              <strong>1 петля</strong>
+              початок великої речі
+            </div>
+            <div class="floating-label two">
+              <strong>soft craft</strong>
+              повільне хобі для швидкого світу
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="techniques" id="techniques">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">техніки</p>
+            <h2 class="section-title">В’язати можна по-різному</h2>
+            <p class="section-text">
+              Кожен спосіб має свій характер: спиці дають ритм, гачок — свободу,
+              руки — масштаб, пальці — простоту, а машина — швидкість і точність.
+            </p>
+          </div>
+
+          <div class="cards-grid">
+            <article class="tech-card">
+              <div class="icon">🧶</div>
+              <h3>Спицями</h3>
+              <p>
+                Класика для светрів, шапок, шарфів, жилетів і пледів.
+                Добре підходить для рівного полотна, гумки, кіс і ажурів.
+              </p>
+            </article>
+
+            <article class="tech-card">
+              <div class="icon">🪡</div>
+              <h3>Гачком</h3>
+              <p>
+                Ідеальний варіант для сумок, серветок, іграшок амігурумі,
+                декору, топів і фактурних виробів.
+              </p>
+            </article>
+
+            <article class="tech-card">
+              <div class="icon">🤲</div>
+              <h3>Руками</h3>
+              <p>
+                В’язання без інструментів із товстої пряжі. Найкраще для
+                великих пледів, подушок і затишного домашнього текстилю.
+              </p>
+            </article>
+
+            <article class="tech-card">
+              <div class="icon">☝️</div>
+              <h3>Пальцями</h3>
+              <p>
+                Простий спосіб для дітей, абсолютних новачків або швидких
+                декоративних проєктів без спиць і гачка.
+              </p>
+            </article>
+
+            <article class="tech-card">
+              <div class="icon">⚙️</div>
+              <h3>Машинне</h3>
+              <p>
+                Для тих, хто хоче швидко створювати рівне полотно, серійні
+                вироби або експериментувати з трикотажним дизайном.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="ideas" id="ideas">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">ідеї</p>
+            <h2 class="section-title">Що можна зв’язати</h2>
+            <p class="section-text">
+              В’язання — це не лише шкарпетки й шарфи. Це одяг, декор,
+              аксесуари, подарунки й речі, які мають настрій.
+            </p>
+          </div>
+
+          <div class="idea-grid">
+            <article class="idea-large">
+              <div>
+                <h3>Почни з малого, але красивого</h3>
+                <p>
+                  Перший виріб не має бути складним. Краще обрати щось невелике:
+                  пов’язку, снуд, підставку під чашку, мінісумку або простий шарф.
+                  Так легше побачити результат і не втратити мотивацію.
+                </p>
+              </div>
+
+              <div class="tags">
+                <span>шарфи</span>
+                <span>светри</span>
+                <span>сумки</span>
+                <span>іграшки</span>
+                <span>пледи</span>
+                <span>декор</span>
+              </div>
+            </article>
+
+            <div class="idea-list">
+              <div class="idea-item">
+                <strong>Для дому</strong>
+                <span>пледи, наволочки, кошики, доріжки, підставки</span>
+              </div>
+
+              <div class="idea-item">
+                <strong>Для гардероба</strong>
+                <span>кардигани, жилети, топи, светри, шапки, рукавиці</span>
+              </div>
+
+              <div class="idea-item">
+                <strong>Для подарунків</strong>
+                <span>брелоки, іграшки, мінішарфи, чохли, прикраси</span>
+              </div>
+
+              <div class="idea-item">
+                <strong>Для бізнесу</strong>
+                <span>капсульні колекції, декор, авторські аксесуари</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tips">
+        <div class="container">
+          <div class="section-head center">
+            <p class="eyebrow">старт</p>
+            <h2 class="section-title">Поради для початківців</h2>
+            <p class="section-text">
+              Найкращий спосіб навчитися — не чекати ідеального моменту,
+              а взяти просту пряжу, зручний інструмент і зробити перші ряди.
+            </p>
+          </div>
+
+          <div class="tips-grid">
+            <article class="tip">
+              <div class="tip-number">01</div>
+              <h3>Не починай зі складного</h3>
+              <p>
+                Перший светр може швидко втомити. Почни з шарфа, пов’язки,
+                квадрата для пледа або простого чохла.
+              </p>
+            </article>
+
+            <article class="tip">
+              <div class="tip-number">02</div>
+              <h3>Обирай світлу пряжу</h3>
+              <p>
+                На темній пряжі важче бачити петлі. Для навчання краще взяти
+                світлу, гладку нитку середньої товщини.
+              </p>
+            </article>
+
+            <article class="tip">
+              <div class="tip-number">03</div>
+              <h3>Роби зразок</h3>
+              <p>
+                Невеликий зразок допомагає зрозуміти щільність в’язання,
+                розмір майбутнього виробу і поведінку пряжі.
+              </p>
+            </article>
+
+            <article class="tip">
+              <div class="tip-number">04</div>
+              <h3>Не бійся розпускати</h3>
+              <p>
+                Розпускання — це не помилка, а частина процесу.
+                Навіть досвідчені майстри часто переробляють фрагменти.
+              </p>
+            </article>
+
+            <article class="tip">
+              <div class="tip-number">05</div>
+              <h3>Записуй параметри</h3>
+              <p>
+                Зберігай номер спиць, склад пряжі, кількість петель і рядів.
+                Це дуже допоможе, якщо захочеш повторити виріб.
+              </p>
+            </article>
+
+            <article class="tip">
+              <div class="tip-number">06</div>
+              <h3>В’язання має бути приємним</h3>
+              <p>
+                Не женись за ідеальністю. Ритм, дотик до пряжі й маленький
+                прогрес часто важливіші за бездоганний результат.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="tools" id="tools">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">інструменти</p>
+            <h2 class="section-title">Маленький помічник для старту</h2>
+            <p class="section-text">
+              Тут можна приблизно порахувати кількість пряжі та отримати ідею,
+              з якої техніки краще почати.
+            </p>
+          </div>
+
+          <div class="tool-grid">
+            <article class="tool-card">
+              <h3>Калькулятор пряжі</h3>
+              <p>
+                Обери тип виробу й розмір. Розрахунок приблизний, бо точна
+                кількість залежить від товщини пряжі, щільності та візерунка.
+              </p>
+
+              <div class="form">
+                <div>
+                  <label for="project">Тип виробу</label>
+                  <select id="project">
+                    <option value="scarf">Шарф або снуд</option>
+                    <option value="hat">Шапка</option>
+                    <option value="sweater">Светр</option>
+                    <option value="blanket">Плед</option>
+                    <option value="bag">Сумка</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="size">Розмір / масштаб</label>
+                  <select id="size">
+                    <option value="small">Малий</option>
+                    <option value="medium" selected>Середній</option>
+                    <option value="large">Великий</option>
+                  </select>
+                </div>
+
+                <button class="btn btn-primary" type="button" onclick="calculateYarn()">
+                  Порахувати
+                </button>
+              </div>
+
+              <div class="result-box" id="yarnResult">
+                Орієнтовна кількість з’явиться тут.
+              </div>
+            </article>
+
+            <article class="tool-card quiz-result">
+              <h3>Що мені спробувати?</h3>
+              <p>
+                Натисни кнопку — і сайт підкаже техніку або маленький проєкт
+                для настрою.
+              </p>
+
+              <div class="result-box" id="quizResult">
+                <strong>Спробуй гачок</strong>
+                Почни з простої підставки під чашку або маленької сумки.
+              </div>
+
+              <div class="quiz-buttons">
+                <button class="small-btn" type="button" onclick="randomIdea()">Дати ідею</button>
+                <button class="small-btn" type="button" onclick="softReset()">Почати спокійно</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="facts">
+        <div class="container">
+          <div class="section-head center">
+            <p class="eyebrow">цікаве</p>
+            <h2 class="section-title">Факти про в’язання</h2>
+            <p class="section-text">
+              В’язання поєднує ремесло, математику, дизайн, тактильність
+              і дуже особисте відчуття речі, зробленої вручну.
+            </p>
+          </div>
+
+          <div class="facts-wrap">
+            <article class="fact-card">
+              <h3>01</h3>
+              <p>
+                В’язання допомагає краще розуміти ритм, симетрію, повтори
+                та структуру полотна.
+              </p>
+            </article>
+
+            <article class="fact-card">
+              <h3>02</h3>
+              <p>
+                Одна й та сама схема може виглядати зовсім інакше залежно
+                від пряжі, кольору й щільності.
+              </p>
+            </article>
+
+            <article class="fact-card">
+              <h3>03</h3>
+              <p>
+                Гачок часто дає щільніше полотно, а спиці — більш еластичне
+                і м’яке.
+              </p>
+            </article>
+
+            <article class="fact-card">
+              <h3>04</h3>
+              <p>
+                Машинне в’язання не скасовує творчість: воно змінює швидкість,
+                масштаб і підхід до дизайну.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta">
+        <div class="container">
+          <div class="cta-box">
+            <h2>Почни з однієї петлі</h2>
+            <p>
+              Не потрібно чекати ідеальної пряжі, дорогих інструментів
+              або великого досвіду. Для старту достатньо маленького клубка,
+              простого задуму і бажання спробувати.
+            </p>
+            <a href="#techniques" class="btn">Обрати техніку</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        © 2026 Петелька. Сайт про в’язання, натхнення і теплі речі.
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    function calculateYarn() {
+      const project = document.getElementById("project").value;
+      const size = document.getElementById("size").value;
+      const result = document.getElementById("yarnResult");
+
+      const data = {
+        scarf: {
+          small: "приблизно 150–250 г пряжі",
+          medium: "приблизно 250–400 г пряжі",
+          large: "приблизно 400–600 г пряжі"
+        },
+        hat: {
+          small: "приблизно 70–100 г пряжі",
+          medium: "приблизно 100–150 г пряжі",
+          large: "приблизно 150–200 г пряжі"
+        },
+        sweater: {
+          small: "приблизно 400–550 г пряжі",
+          medium: "приблизно 550–750 г пряжі",
+          large: "приблизно 750–1000 г пряжі"
+        },
+        blanket: {
+          small: "приблизно 700–1000 г пряжі",
+          medium: "приблизно 1000–1600 г пряжі",
+          large: "приблизно 1600–2500 г пряжі"
+        },
+        bag: {
+          small: "приблизно 150–250 г пряжі",
+          medium: "приблизно 250–400 г пряжі",
+          large: "приблизно 400–650 г пряжі"
+        }
+      };
+
+      result.textContent = "Для цього виробу потрібно " + data[project][size] + ".";
+    }
+
+    function randomIdea() {
+      const ideas = [
+        {
+          title: "Спробуй спиці",
+          text: "Почни з шарфа платочною в’язкою — це простий ритм і швидке відчуття прогресу."
+        },
+        {
+          title: "Спробуй гачок",
+          text: "Зв’яжи підставку під чашку або маленький кошик — гачок добре тримає форму."
+        },
+        {
+          title: "Спробуй в’язання руками",
+          text: "Візьми товсту пряжу й зроби мініплед або декоративну подушку без інструментів."
+        },
+        {
+          title: "Спробуй пальцями",
+          text: "Зроби простий шнур, браслет або декор для пакування подарунка."
+        },
+        {
+          title: "Спробуй машинне в’язання",
+          text: "Почни з рівного полотна: шарфа, зразка або простого прямокутного виробу."
+        },
+        {
+          title: "Спробуй амігурумі",
+          text: "Маленька іграшка гачком — добрий спосіб навчитися формі, об’єму й деталям."
+        }
+      ];
+
+      const random = ideas[Math.floor(Math.random() * ideas.length)];
+      const box = document.getElementById("quizResult");
+
+      box.innerHTML = "<strong>" + random.title + "</strong>" + random.text;
+    }
+
+    function softReset() {
+      const box = document.getElementById("quizResult");
+      box.innerHTML = "<strong>Почни з малого</strong>Обери світлу пряжу, простий інструмент і виріб, який можна завершити за кілька вечорів.";
+    }
+  </script>
+</body>
+</html>
