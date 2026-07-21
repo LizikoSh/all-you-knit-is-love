@@ -191,16 +191,28 @@
 
     /* HERO */
     .hero {
-      padding: 88px 0 72px;
-      position: relative;
-    }
+  position: relative;
+  min-height: 720px;
+  padding: 110px 0 90px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(10, 44, 52, 0.82) 0%,
+      rgba(10, 44, 52, 0.62) 48%,
+      rgba(10, 44, 52, 0.18) 100%
+    ),
+    url("priazha-spytsi-viaz.jpg") center / cover no-repeat;
+}
 
     .hero-grid {
-      display: grid;
-      grid-template-columns: 1.04fr 0.96fr;
-      align-items: center;
-      gap: 44px;
-    }
+  display: grid;
+  grid-template-columns: minmax(0, 680px);
+  align-items: center;
+}
 
     .eyebrow {
       display: inline-flex;
