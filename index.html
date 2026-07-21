@@ -214,6 +214,49 @@
   align-items: center;
 }
 
+    .hero .eyebrow {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.hero .eyebrow::before {
+  background: var(--amber-glow);
+}
+
+.hero h1 {
+  color: #ffffff;
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.24);
+}
+
+.hero h1 span {
+  color: var(--amber-glow);
+}
+
+.hero-text {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.hero-note {
+  color: #ffffff;
+}
+
+.hero-note span {
+  background: rgba(10, 44, 52, 0.48);
+  border-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+.hero .btn-secondary {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(8px);
+}
+
+.hero .btn-secondary:hover {
+  color: var(--brown);
+  background: #ffffff;
+}
+
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -838,8 +881,22 @@
       }
 
       .hero {
-        padding: 54px 0 48px;
-      }
+  min-height: 650px;
+  padding: 80px 0 64px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 44, 52, 0.72) 0%,
+      rgba(10, 44, 52, 0.7) 55%,
+      rgba(10, 44, 52, 0.84) 100%
+    ),
+    url("priazha-spytsi-viaz.jpg") 58% center / cover no-repeat;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 15vw, 4.8rem);
+}
 
       section {
         padding: 54px 0;
@@ -947,23 +1004,6 @@
               <span>5 способів в’язання</span>
               <span>ідеї виробів</span>
               <span>калькулятор пряжі</span>
-            </div>
-          </div>
-
-          <div class="yarn-card">
-            <img
-              src="priazha-spytsi-viaz.jpg"
-              alt="Клубки пряжі зі спицями на складеному в’язаному пледі"
-            />
-
-            <div class="floating-label one">
-              <strong>1 петля</strong>
-              початок великої речі
-            </div>
-
-            <div class="floating-label two">
-              <strong>handmade</strong>
-              повільне хобі для швидкого світу
             </div>
           </div>
         </div>
